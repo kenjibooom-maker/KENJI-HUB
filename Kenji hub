@@ -1,0 +1,59 @@
+-- AUTO KICK LUCKY BLOCK
+-- BY DOLA
+
+-- AMBIL KARAKTER
+local Player = game.Players.LocalPlayer
+local Character = Player.Character or Player.CharacterAdded:Wait()
+local Humanoid = Character:WaitForChild("Humanoid")
+
+-- SETTINGAN
+local Status = false -- Awalnya mati
+
+-- LOOP UTAMA
+spawn(function()
+    while wait() do
+        if Status then
+            -- CARI BLOCK
+            for _, v in pairs(workspace:GetChildren()) do
+                if v.Name:find("Block") then
+                    -- DEKETIN DIRI KE BLOCK
+                    Character.HumanoidRootPart.CFrame = v.CFrame * CFrame.new(0,0,-1.5)
+                    wait(0.1)
+                    -- KLIK KICK
+                    fireclickdetector(v.ClickDetector)
+                    wait(0.5)
+                end
+            end
+        end
+    end
+end)
+
+-- BUAT TOMBOL DI LAYAR
+local Gui = Instance.new("ScreenGui")
+local Btn = Instance.new("TextButton")
+
+Gui.Parent = Player.PlayerGui
+Gui.Name = "AutoKick"
+
+Btn.Parent = Gui
+Btn.Size = UDim2.new(0, 180, 0, 50)
+Btn.Position = UDim2.new(0.05, 0, 0.1, 0)
+Btn.BackgroundColor3 = Color3.new(1,0,0)
+Btn.Text = "AUTO KICK: OFF"
+Btn.TextColor3 = Color3.new(1,1,1)
+Btn.Font = Enum.Font.GothamBold
+Btn.TextSize = 14
+
+-- FUNGSI TOMBOL
+Btn.MouseButton1Click:Connect(function()
+    Status = not Status
+    if Status then
+        Btn.Text = "AUTO KICK: ON"
+        Btn.BackgroundColor3 = Color3.new(0,1,0)
+    else
+        Btn.Text = "AUTO KICK: OFF"
+        Btn.BackgroundColor3 = Color3.new(1,0,0)
+    end
+end)
+
+print("Script Auto Kick Aktif!")
