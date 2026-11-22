@@ -7,9 +7,7 @@ print("Loading KENJI HUB...")
 print("Version: " .. VERSION)
 
 local success, result = pcall(function()
-    local source = game:HttpGet("URL_RAW_MAIN_LUA")
-    loadstring(source)()
-end)
+    local source = game:HttpGet("https://raw.githubusercontent.com/kenjibooom-maker/KENJI-HUB/refs/heads/main/main.lua")
 
 if success then
     print("KENJI HUB loaded!")
