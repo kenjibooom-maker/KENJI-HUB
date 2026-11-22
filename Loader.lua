@@ -1,3 +1,4 @@
+
 -- KENJI HUB LOADER
 -- Version 1.0.0
 
@@ -8,10 +9,11 @@ print("Version: " .. VERSION)
 
 local success, result = pcall(function()
     local source = game:HttpGet("https://raw.githubusercontent.com/kenjibooom-maker/KENJI-HUB/refs/heads/main/main.lua")
+    loadstring(source)()
+end)
 
 if success then
     print("KENJI HUB loaded!")
 else
     warn("KENJI HUB ERROR: " .. tostring(result))
 end
-
